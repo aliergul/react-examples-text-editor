@@ -1,11 +1,25 @@
-import defaultText from "./defaultText";
+import { useContext, useEffect } from "react";
+import defaultText from "../utils/defaultText";
+import MainContext from "./MainContext";
 
 const TextArea = () => {
-  const text = defaultText;
+  const { setSelectedText } = useContext(MainContext);
+
+  useEffect(() => {
+    document.querySelector(".textarea").addEventListener("select", (e) => {
+      setSelectedText(
+        e.target.value.substring(e.target.selectionStart, e.target.selectionEnd)
+      );
+    });
+  }, []); //eslint-disable-line
 
   return (
     <>
-      <textarea className="textarea" defaultValue={text} />
+      <textarea
+        className="textarea"
+        defaultValue={defaultText}
+        spellCheck="false"
+      />
     </>
   );
 };
