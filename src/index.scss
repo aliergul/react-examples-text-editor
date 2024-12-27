@@ -26,6 +26,7 @@ code {
 
 #root {
   display: flex;
+  height: 100vh;
   min-height: 100vh;
 }
 
@@ -69,23 +70,14 @@ h1 {
 }
 
 .textarea {
+  font-family: "Courier New", Courier, monospace;
   width: 80%;
-  height: 100%;
-  resize: none;
+  height: 60%;
   font-size: 14px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
-}
-
-.textarea .span-b {
-  font-weight: bold;
-}
-
-.textarea .span-u {
-  text-decoration: underline;
-}
-
-.textarea .span-i {
-  font-style: italic;
+  line-height: 28px;
+  font-weight: 400;
+  overflow-y: auto;
 }

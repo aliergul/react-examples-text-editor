@@ -7,7 +7,6 @@ const TextArea = () => {
       <div
         id="textarea"
         className="textarea"
-        //defaultValue={defaultText}
         spellCheck="false"
         contentEditable="true"
         suppressContentEditableWarning={true}
