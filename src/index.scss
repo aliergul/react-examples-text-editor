@@ -29,6 +29,25 @@ code {
   min-height: 100vh;
 }
 
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: #eac2a0;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.2s;
+}
+
+button:hover {
+  background-color: #f5bb81;
+}
+
+button:active {
+  border: 1px solid transparent;
+  border-color: #3d3e4d;
+}
+
 h1 {
   padding: 10px;
 }
@@ -44,9 +63,9 @@ h1 {
 .editor {
   display: flex;
   width: 100%;
-  background-color: #e6b07a;
   justify-content: center;
   padding: 10px;
+  gap: 10px;
 }
 
 .textarea {
@@ -57,6 +76,5 @@ h1 {
   // height: 100px;
   // margin: 10px 0;
   padding: 10px;
-
   border: 1px solid #000;
 }

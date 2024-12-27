@@ -1,7 +1,8 @@
 const EditorItems = ({ name }) => {
+  console.log("name", name);
   return (
     <>
-      <button>{name}</button>
+      <button className="editor-buttons">{name}</button>
     </>
   );
 };
