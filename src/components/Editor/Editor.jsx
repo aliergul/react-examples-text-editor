@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import EditorItems from "./EditorItems";
-import MainContext from "../MainContext";
 
 const items = [
   "h1",
@@ -18,8 +16,6 @@ const items = [
 ];
 
 const Editor = () => {
-  const { selectedText, setSelectedText } = useContext(MainContext);
-
   return (
     <div className="editor">
       {items.map((name, i) => {
