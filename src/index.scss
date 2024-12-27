@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    sans-serif;
+  font-family: "Source Sans Pro", system-ui, -apple-system, "Segoe UI", Roboto,
+    Ubuntu, Cantarell, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -19,9 +21,42 @@ code {
   border: 0;
   outline: 0;
   box-sizing: border-box;
+  background-color: #ecceae;
 }
 
 #root {
   display: flex;
   min-height: 100vh;
+}
+
+h1 {
+  padding: 10px;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.editor {
+  display: flex;
+  width: 100%;
+  background-color: #e6b07a;
+  justify-content: center;
+  padding: 10px;
+}
+
+.textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  font-size: 14px;
+  // height: 100px;
+  // margin: 10px 0;
+  padding: 10px;
+
+  border: 1px solid #000;
 }
