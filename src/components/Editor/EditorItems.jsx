@@ -5,14 +5,48 @@ const EditorItems = ({ type, label, value }) => {
 
     if (!selection.isCollapsed) {
       const range = selection.getRangeAt(0);
-      const boldText = document.createElement(value);
-      range.surroundContents(boldText);
 
-      range.setStartAfter(boldText);
-      range.setEndAfter(boldText);
-      selection.removeAllRanges();
-      selection.addRange(range);
-      editor.focus();
+      const startContainer = range.startContainer;
+      const endContainer = range.endContainer;
+
+      const hasStart =
+        startContainer.nodeType === Node.ELEMENT_NODE
+          ? startContainer.closest(value) !== null
+          : startContainer.parentElement.closest(value) !== null;
+
+      const hasEnd =
+        endContainer.nodeType === Node.ELEMENT_NODE
+          ? endContainer.closest(value) !== null
+          : endContainer.parentElement.closest(value) !== null;
+
+      const alreadyStyled = hasStart && hasEnd;
+
+      if (alreadyStyled) {
+        const ancestor = range.commonAncestorContainer;
+        const targetElement =
+          ancestor.nodeType === Node.ELEMENT_NODE
+            ? ancestor.closest(value)
+            : ancestor.parentElement.closest(value);
+
+        if (targetElement) {
+          const parent = targetElement.parentNode;
+
+          while (targetElement.firstChild) {
+            parent.insertBefore(targetElement.firstChild, targetElement);
+          }
+
+          parent.removeChild(targetElement);
+        }
+      } else {
+        const styledText = document.createElement(value);
+        range.surroundContents(styledText);
+
+        range.setStartAfter(styledText);
+        range.setEndAfter(styledText);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        editor.focus();
+      }
     }
   };
 
