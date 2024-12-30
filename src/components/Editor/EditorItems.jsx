@@ -1,11 +1,11 @@
-const EditorItems = ({ type, name }) => {
+const EditorItems = ({ type, label, value }) => {
   const changeText = () => {
     const editor = document.getElementById("textarea");
     const selection = window.getSelection();
 
     if (!selection.isCollapsed) {
       const range = selection.getRangeAt(0);
-      const boldText = document.createElement("");
+      const boldText = document.createElement(value);
       range.surroundContents(boldText);
 
       range.setStartAfter(boldText);
@@ -17,7 +17,7 @@ const EditorItems = ({ type, name }) => {
   };
 
   const changeParagrapgh = () => {
-    document.getElementById("textarea").style.textAlign = name;
+    document.getElementById("textarea").style.textAlign = value;
   };
 
   return (
@@ -26,7 +26,7 @@ const EditorItems = ({ type, name }) => {
         className="editor-buttons"
         onClick={type === "text" ? changeText : changeParagrapgh}
       >
-        {name}
+        {label}
       </button>
     </>
   );

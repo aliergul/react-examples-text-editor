@@ -1,26 +1,45 @@
 import EditorItems from "./EditorItems";
 
 const styleText = [
-  "h1", //h1
-  "h2", //h2
-  "h3", //h3
-  "paragraph", //p
-  "bold", //b
-  "italic", //i
-  "strike", //strike
-  "underline", //u
+  { label: "Heading 1", value: "h1" },
+  { label: "Heading 2", value: "h2" },
+  { label: "Heading 3", value: "h3" },
+  { label: "Paragraph", value: "p" },
+  { label: "Bold", value: "b" },
+  { label: "Italic", value: "i" },
+  { label: "Strike", value: "strike" },
+  { label: "Underline", value: "u" },
 ];
 
-const styleParagraph = ["left", "center", "right", "justify"];
+const styleParagraph = [
+  { label: "Left", value: "left" },
+  { label: "Center", value: "center" },
+  { label: "Right", value: "right" },
+  { label: "Justify", value: "justify" },
+];
 
 const Editor = () => {
   return (
     <div className="editor">
-      {styleText.map((name, i) => {
-        return <EditorItems key={i} name={name} type={"text"} />;
+      {Object.values(styleText).map((style, i) => {
+        return (
+          <EditorItems
+            key={i}
+            label={style.label}
+            value={style.value}
+            type={"text"}
+          />
+        );
       })}
-      {styleParagraph.map((name, i) => {
-        return <EditorItems key={i} name={name} type={"paragraph"} />;
+      {Object.values(styleParagraph).map((style, i) => {
+        return (
+          <EditorItems
+            key={i}
+            label={style.label}
+            value={style.value}
+            type={"paragraph"}
+          />
+        );
       })}
     </div>
   );
