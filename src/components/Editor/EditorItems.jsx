@@ -32,6 +32,8 @@ const EditorItems = ({ type, label, value }) => {
           }
 
           parent.removeChild(targetElement);
+
+          cleanEmptyTags(parent, value);
         }
       } else {
         const styledText = document.createElement(value);
@@ -55,6 +57,11 @@ const EditorItems = ({ type, label, value }) => {
         editor.focus();
       }
     }
+  };
+
+  const cleanEmptyTags = (parent, tagName) => {
+    const emptyTags = parent.querySelectorAll(`${tagName}:empty`);
+    emptyTags.forEach((tag) => tag.remove());
   };
 
   const changeParagraph = () => {
