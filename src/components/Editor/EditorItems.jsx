@@ -9,19 +9,15 @@ const EditorItems = ({ type, label, value }) => {
       const startContainer = range.startContainer;
       const endContainer = range.endContainer;
 
-      const hasStart =
-        startContainer.nodeType === Node.ELEMENT_NODE
-          ? startContainer.closest(value) !== null
-          : startContainer.parentElement.closest(value) !== null;
+      const isStyled = (node) =>
+        node.nodeType === Node.ELEMENT_NODE
+          ? node.closest(value) !== null
+          : node.parentElement.closest(value) !== null;
 
-      const hasEnd =
-        endContainer.nodeType === Node.ELEMENT_NODE
-          ? endContainer.closest(value) !== null
-          : endContainer.parentElement.closest(value) !== null;
+      const hasStartStyled = isStyled(startContainer);
+      const hasEndStyled = isStyled(endContainer);
 
-      const alreadyStyled = hasStart && hasEnd;
-
-      if (alreadyStyled) {
+      if (hasStartStyled && hasEndStyled) {
         const ancestor = range.commonAncestorContainer;
         const targetElement =
           ancestor.nodeType === Node.ELEMENT_NODE
@@ -39,18 +35,29 @@ const EditorItems = ({ type, label, value }) => {
         }
       } else {
         const styledText = document.createElement(value);
-        range.surroundContents(styledText);
 
-        range.setStartAfter(styledText);
-        range.setEndAfter(styledText);
+        const fragment = range.extractContents();
+        Array.from(fragment.childNodes).forEach((child) => {
+          if (
+            child.nodeType === Node.ELEMENT_NODE &&
+            child.tagName.toLowerCase() === value
+          ) {
+            while (child.firstChild) {
+              styledText.appendChild(child.firstChild);
+            }
+          } else {
+            styledText.appendChild(child);
+          }
+        });
+
+        range.insertNode(styledText);
         selection.removeAllRanges();
-        selection.addRange(range);
         editor.focus();
       }
     }
   };
 
-  const changeParagrapgh = () => {
+  const changeParagraph = () => {
     document.getElementById("textarea").style.textAlign = value;
   };
 
@@ -58,7 +65,7 @@ const EditorItems = ({ type, label, value }) => {
     <>
       <button
         className="editor-buttons"
-        onClick={type === "text" ? changeText : changeParagrapgh}
+        onClick={type === "text" ? changeText : changeParagraph}
       >
         {label}
       </button>
