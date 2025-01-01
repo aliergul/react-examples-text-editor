@@ -1,6 +1,6 @@
 const EditorItems = ({ type, label, value }) => {
   const changeText = () => {
-    const editor = document.getElementById("textarea");
+    //const editor = document.getElementById("textarea");
     const selection = window.getSelection();
 
     if (!selection.isCollapsed) {
@@ -54,7 +54,7 @@ const EditorItems = ({ type, label, value }) => {
 
         range.insertNode(styledText);
         selection.removeAllRanges();
-        editor.focus();
+        // editor.focus();
       }
     }
   };
