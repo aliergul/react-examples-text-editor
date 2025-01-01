@@ -3,6 +3,7 @@
 
 Bu projede Vite ile bir React projesi oluşturarak basit bir text editor örneği oluşturdum. Buradaki amaç HTML elementlerini manipüle ederek text içeriğine bazı stil özellikleri uygulamaktı.
 
+https://basic-text-editor-ali-ergul.netlify.app/
 
 ## 📷 Ekran Görüntüleri
 
